@@ -1,5 +1,14 @@
-function pingController(req, res) {
-  res.status(200).json({ message: 'Pong!' });
-}
 
-module.exports = pingController;
+const app = ((req, res) => {
+    res.json({ message: 'this is Router two!' });
+});
+
+const productRoute = ((req, res) => {
+    res.json({ product: [] });
+    console.log(req.params)
+});
+
+module.exports = {
+    app,
+    productRoute
+}
