@@ -1,10 +1,13 @@
-class BadRequest extends Error{
-    constructor(propertyMissing) {
-        const errorMessage = `${propertyMissing} is missing from the request body`
-        super(errorMessage);
-        this.statusCode = 400;
-        this.errorMessage = errorMessage;
-    }
+
+function badRequest(propertyMissing) {
+    const errorMessage = `${propertyMissing}is missing from the request body`;
+    const statusCode = 400;
+    const err = errorMessage;
+    return {
+        statusCode,
+        errorMessage,
+        err
+    };
 }
 
-module.exports = BadRequest;
+module.exports = badRequest;

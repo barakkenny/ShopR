@@ -1,5 +1,5 @@
 const express = require('express');
-const { createProduct } = require('../../controller/product_controller');
+const { createProduct, getProducts, getProduct } = require('../../controller/product_controller');
 const { createProductValidator } = require('../../middlewares/product_middlewares');
 
 const productRouter = express.Router();
@@ -10,7 +10,9 @@ const productRouter = express.Router();
 //     res.json({product: []})
 // })
 
-// productRouter.get('/', createProduct)
+productRouter.get('/', getProducts)
+
+productRouter.get('/:id', getProduct);
 
 productRouter.post('/', createProductValidator, createProduct);
 
