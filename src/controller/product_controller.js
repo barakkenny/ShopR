@@ -15,9 +15,10 @@ function createProduct(req, res) {
     }
 }
 
-function getProducts(req, res) {
+async function getProducts(req, res) {
     try{
         const response = productService.getProducts();
+        console.log(response)
         res.status(StatusCodes.OK).json({
         success: true,
         message: 'Successfully fetched the Product',

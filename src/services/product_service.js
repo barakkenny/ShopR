@@ -1,5 +1,8 @@
+const FakeStoreRepository = require('../repositories/fake_store_repo');
 
 const products = [];
+
+const repository = FakeStoreRepository;
 
 function createProduct(product){
  const newProduct = {
@@ -10,8 +13,9 @@ function createProduct(product){
  return newProduct;
 }
 
-function getProducts() {
-    return products;
+async function getProducts() {
+    const response = await repository.getProducts();
+    return response.data;
 }
 
 function getProduct(id) {
