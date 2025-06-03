@@ -1,9 +1,12 @@
 const { StatusCodes, ReasonPhrases } = require('http-status-codes')
-const productService = require('../services/product_service')
+const ProductService = require('../services/product_service')
+const FakeStoreRepository = require('../repositories/fake_store_repo');
 
-function createProduct(req, res) {
+const productService = new ProductService(new FakeStoreRepository());
+
+async function createProduct(req, res) {
     try{
-        const response = productService.createProduct(req.body)
+        const response = await productService.createProduct(req.body)
         res.status(StatusCodes.CREATED).json({
         success: true,
         message: ReasonPhrases.CREATED + ' Product',
@@ -17,7 +20,7 @@ function createProduct(req, res) {
 
 async function getProducts(req, res) {
     try{
-        const response = productService.getProducts();
+        const response = await productService.getProducts();
         console.log(response)
         res.status(StatusCodes.OK).json({
         success: true,
@@ -30,9 +33,9 @@ async function getProducts(req, res) {
     }
 } 
 
-function getProduct(req, res){
+async function getProduct(req, res){
     try{
-        const response = productService.getProduct(req.params.id);
+        const response = await productService.getProduct(req.params.id);
         res.status(StatusCodes.OK).json({
         success: true,
         message: 'Successfully fetched one Product',
