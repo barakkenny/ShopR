@@ -18,6 +18,15 @@ async getProduct(id){
         console.log(error);
     }
 }
+
+async createProduct(product){
+    try{
+        const response = await axios.get('https://fakestoreapi.com/products', product);
+        return response.data;
+    }catch(error){
+        console.log(error);
+    }
+}
 }
 
 module.exports = FakeStoreRepository;
